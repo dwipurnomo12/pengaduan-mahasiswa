@@ -30,12 +30,34 @@
             <span class="hide-menu">Pengaduan</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/pengaduan" aria-expanded="false">
+            <a class="sidebar-link" href="/admin/pengaduan" aria-expanded="false">
               <span>
                 <i class="ti ti-messages"></i>
               </span>
               <span class="hide-menu">Pengaduan</span>
-          </a>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/admin/komentar" aria-expanded="false">
+              <span>
+                <i class="ti ti-message-circle-2"></i>
+              </span>
+              <span class="hide-menu">Komentar</span>
+            </a>
+          </li>
+
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Data Master</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/admin/kategori" aria-expanded="false">
+              <span>
+                <i class="ti ti-category-2"></i>
+              </span>
+              <span class="hide-menu">Kategori</span>
+            </a>
+          </li>
         </ul>
 
       </nav>

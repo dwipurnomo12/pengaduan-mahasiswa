@@ -28,6 +28,14 @@ class DatabaseSeeder extends Seeder
             'password'  => bcrypt('1234'),
             'role_id'   => 1
         ]);
+        User::create([
+            'name'      => 'Dwi Purnomo',
+            'email'     => 'purnomodwi174@gmail.com',
+            'password'  => bcrypt('1234'),
+            'nim'       => '202520010',
+            'no_hp'     => '081229248179',
+            'role_id'   => 2
+        ]);
 
         Kategori::create([
             'kategori'  => 'Akademik'

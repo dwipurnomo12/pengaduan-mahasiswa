@@ -129,46 +129,33 @@
       </div>
 
       <div class="row content">
+        @foreach ($pengaduans as $pengaduan)
           <div class="col-lg-4">
-            <div class="card-aduan">
-              <div class="card-body">
-                <h3>Pembayaran terlalu mahal</h3>
-                <div class="user-info">
-                  <p><i class='bx bxs-user-circle'></i> John Doe</p>
-                  <p><i class='bx bx-time'></i> 2 jam yang lalu</p>
+              <div class="card-aduan mb-2">
+                <div class="card-body p-2">
+                  <h3><b>{{ $pengaduan->judul_pengaduan }}</b></h3>
+                  <div class="user-info mt-3">
+                    <p><i class='bx bxs-user-circle'></i>{{ $pengaduan->user->name }}</p>
+                    <p>
+                      @if ($pengaduan->status == 'Sedang Diproses')
+                        <span class="badge text-bg-warning">{{ $pengaduan->status }}</span>
+                      @elseif($pengaduan->status == 'Selesai')
+                        <span class="badge text-bg-success">{{ $pengaduan->status }}</span>
+                      @elseif($pengaduan->status == 'Tidak Dapat Diproses')
+                        <span class="badge text-bg-danger">{{ $pengaduan->status }}</span>
+                      @endif
+                    </p>
+                    <p><i class='bx bx-time'></i>{{ $pengaduan->created_at->diffForHumans() }} </p>
+                  </div>
+                  <p class="description mt-2">{{ $pengaduan->excerpt }} <a href="/lihat-aduan/{{ $pengaduan->slug }}">Read More..</a></p>
                 </div>
-                <p class="description">Mahasiswa yang ingin mengajukan aduan, wajib melakukan registrasi terlebih dahulu <a href="/">Read More..</a></p>
               </div>
-            </div>
           </div>
-          <div class="col-lg-4">
-            <div class="card-aduan">
-              <div class="card-body">
-                <h3>Pembayaran terlalu mahal Sekali cuy</h3>
-                <div class="user-info">
-                  <p><i class='bx bxs-user-circle'></i> John Doe</p>
-                  <p><i class='bx bx-time'></i> 2 jam yang lalu</p>
-                </div>
-                <p class="description">Mahasiswa yang ingin mengajukan aduan, wajib melakukan registrasi terlebih dahulu  <a href="/">Read More..</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card-aduan">
-              <div class="card-body">
-                <h3>Pembayaran terlalu mahal</h3>
-                <div class="user-info">
-                  <p><i class='bx bxs-user-circle'></i> John Doe</p>
-                  <p><i class='bx bx-time'></i> 2 jam yang lalu</p>
-                </div>
-                <p class="description">Mahasiswa yang ingin mengajukan aduan, wajib melakukan registrasi terlebih dahulu Mahasiswa yang ingin mengajukan aduan, wajib melakukan registrasi terlebih dahulu  <a href="/">Read More..</a></p>
-              </div>
-            </div>
-          </div>
+        @endforeach
       </div>
 
       <div class="text-center">
-        <a class="btn btn-primary mt-5" href="#" role="button">Lihat Semua</a>
+        <a class="btn btn-primary mt-5" href="/lihat-aduan" role="button">Lihat Semua</a>
       </div>
 
     </div>

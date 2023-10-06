@@ -9,13 +9,17 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="/">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="/">Beranda</a></li>
           <li><a class="nav-link scrollto" href="/tambah-aduan">Tambah Aduan</a></li>
           <li><a class="nav-link scrollto" href="/lihat-aduan">Lihat Aduan</a></li>
           @auth
             <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
               <ul>
-                <li><a href="/aduan-saya">Aduan Saya</a></li>
+                @if (auth()->user()->role_id === 1)
+                  <li><a href="/dashboard">Dashboard Admin</a></li>
+                @else
+                  <li><a href="/aduan-saya">Aduan Saya</a></li>
+                @endif
                 <hr>
                 <form method="POST" action="{{ route('logout') }}">
                   @csrf 

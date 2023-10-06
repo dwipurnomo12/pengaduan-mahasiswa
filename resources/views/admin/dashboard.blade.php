@@ -2,7 +2,16 @@
 
 @section('content')
 
-Anda Login Sebagai {{ auth()->user()->name }}
+<div class="row">
+  <div class="col">
+    <div class="card bg-primary overflow-hidden bg-primary">
+      <div class="card-body p-5 bg-primary">
+        <h4 class=" text-white">Anda Login Sebagai {{ auth()->user()->name }}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-3">
       <div class="card overflow-hidden bg-primary text-white">
