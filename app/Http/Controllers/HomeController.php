@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $totalPengaduan = Pengaduan::count();
+        $sedangDiproses = Pengaduan::where('status', 'Sedang Diproses')->count();
+        $selesai        = Pengaduan::where('status', 'Selesai')->count();
+        $tidakDiproses  = Pengaduan::where('status', 'Tidak Dapat Diproses')->count();
+        $pengaduans     = Pengaduan::orderBy('id', 'DESC')->take(10)->get();
+        $comments       = Comment::orderBy('id', 'DESC')->take(10)->get();
+
+        return view('admin.dashboard', [
+            'totalPengaduan'    => $totalPengaduan,
+            'sedangDiproses'    => $sedangDiproses,
+            'selesai'           => $selesai,
+            'tidakDiproses'     => $tidakDiproses,
+            'pengaduans'        => $pengaduans,
+            'comments'          => $comments
+        ]);
     }
 }

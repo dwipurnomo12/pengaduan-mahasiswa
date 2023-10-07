@@ -40,74 +40,80 @@
                         <div class="card-body">
                             <h4 class="mb-3">Komentar</h4>
 
-                            @foreach ($pengaduan->comments as $comment)
-                                <div class="comment-container mb-4 d-flex align-items-start">
-                                    <div class="comment-avatar me-3">
-                                        <i class="bx bxs-user" style="font-size: 2em;"></i>
-                                    </div>
-                                    <div class="comment-content flex-grow-1">
-                                        <div class="comment-header d-flex justify-content-between align-items-center">
-                                            <h5>{{ $comment->user->name }}</h5>
-                                            @auth
-                                                <a href="javascript:void(0)" onclick="toggleReplyForm({{ $comment->id }})" class="reply"><i class="bi bi-reply-fill"></i> Balas</a>
-                                            @endauth
-                                        </div>
-                                        <p class="mt-2">{{ $comment->body }}</p>
-                                    </div>
-                                </div>
-
-                                @foreach ($comment->replies as $reply)
-                                <div class="comment-container my-4 ms-5 d-flex align-items-start">
-                                    <div class="comment-avatar me-3">
-                                        <i class="bx bxs-user" style="font-size: 2em;"></i>
-                                    </div>
-                                    <div class="comment-content flex-grow-1">
-                                        <div class="comment-header d-flex justify-content-between align-items-center">
-                                            <h5>{{ $reply->user->name }}</h5>
-                                        </div>
-                                        <p class="mt-2">{{ $reply->body }}</p>
-                                    </div>
-                                </div>
-                                @endforeach
-
-                                <div id="replyForm{{ $comment->id }}" class="reply-form mb-3" style="display: none;">
-                                    <form action="/lihat-aduan/{{ $pengaduan->slug }}/reply" method="POST">
-                                        @csrf
-                                        <input type="hidden" value="{{ $comment->id}}" name="comment_id">
-                                        <input type="hidden" name="parent_id" value="{{ $comment->id }}">
-                                        <div class="mb-3">
-                                            <textarea class="form-control @error('replyBody') is-invalid @enderror" placeholder="Balasan Komentar" name="replyBody" rows="3"></textarea>
-                                            @error('replyBody')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-sm">Kirim Balasan</button>
-                                    </form>
-                                </div>
-                            @endforeach
-
-                            @auth
-                            <hr>
-                                <form method="POST" action="/lihat-aduan/{{ $pengaduan->slug }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="body" class="form-label">Tambah Komentar</label>
-                                        <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body" rows="3"></textarea>
-                                        @error('body')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                            @if (auth()->check())
+                                @if (auth()->user()->role_id === 1 || auth()->user()->id === $pengaduan->user_id)
+                                    @foreach ($pengaduan->comments as $comment)
+                                        <div class="comment-container mb-4 d-flex align-items-start">
+                                            <div class="comment-avatar me-3">
+                                                <i class="bx bxs-user" style="font-size: 2em;"></i>
                                             </div>
-                                        @enderror
-                                    </div>
-                                    <button type="submit" class="btn btn-primary float-end">Kirim Komentar</button>
-                                </form>
-                            @else
-                                <div class="alert alert-warning" role="alert">
-                                    Login untuk menambahkan komentar !
-                                </div>
-                            @endauth
+                                            <div class="comment-content flex-grow-1">
+                                                <div class="comment-header d-flex justify-content-between align-items-center">
+                                                    <h5>{{ $comment->user->name }}</h5>
+                                                    @auth
+                                                        <a href="javascript:void(0)" onclick="toggleReplyForm({{ $comment->id }})" class="reply"><i class="bi bi-reply-fill"></i> Balas</a>
+                                                    @endauth
+                                                </div>
+                                                <p class="mt-2">{{ $comment->body }}</p>
+                                            </div>
+                                        </div>
+
+                                        @foreach ($comment->replies as $reply)
+                                        <div class="comment-container my-4 ms-5 d-flex align-items-start">
+                                            <div class="comment-avatar me-3">
+                                                <i class="bx bxs-user" style="font-size: 2em;"></i>
+                                            </div>
+                                            <div class="comment-content flex-grow-1">
+                                                <div class="comment-header d-flex justify-content-between align-items-center">
+                                                    <h5>{{ $reply->user->name }}</h5>
+                                                </div>
+                                                <p class="mt-2">{{ $reply->body }}</p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+
+                                        <div id="replyForm{{ $comment->id }}" class="reply-form mb-3" style="display: none;">
+                                            <form action="/lihat-aduan/{{ $pengaduan->slug }}/reply" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{ $comment->id}}" name="comment_id">
+                                                <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                                                <div class="mb-3">
+                                                    <textarea class="form-control @error('replyBody') is-invalid @enderror" placeholder="Balasan Komentar" name="replyBody" rows="3"></textarea>
+                                                    @error('replyBody')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-sm">Kirim Balasan</button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+
+                                    @auth
+                                    <hr>
+                                        <form method="POST" action="/lihat-aduan/{{ $pengaduan->slug }}" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="body" class="form-label">Tambah Komentar</label>
+                                                <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body" rows="3"></textarea>
+                                                @error('body')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <button type="submit" class="btn btn-primary float-end">Kirim Komentar</button>
+                                        </form>
+                                    @else
+                                        <div class="alert alert-warning" role="alert">
+                                            Login untuk menambahkan komentar !
+                                        </div>
+                                    @endauth
+                                @else
+                                    {{ $pengaduan->comments->count() }} Komentar dan {{ $pengaduan->comments->isEmpty() ? '0' : $pengaduan->comments->first()->replies->count() }} Balasan
+                                @endif                         
+                            @endif
 
                         </div>
                     </div>

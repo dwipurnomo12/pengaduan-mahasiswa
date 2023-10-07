@@ -8,7 +8,7 @@
       <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
         <div data-aos="zoom-out">
           <h1>Sistem Informasi Pengaduan Mahasiswa</span></h1>
-          <h2>Universitas Negeri XYZ</h2>
+          <h2>Universitas Kristen Wira Wacana Sumba</h2>
           <div class="text-center text-lg-start">
             <a href="/tambah-aduan" class="btn-get-started scrollto">Tambah Aduan</a>
           </div>
@@ -85,7 +85,7 @@
         <div class="col-lg-3 col-md-6">
           <div class="count-box">
               <i class='bx bx-comment-detail'></i>
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{ $totalPengaduan }}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Total Pengaduan</p>
           </div>
         </div>
@@ -93,7 +93,7 @@
         <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
           <div class="count-box">
               <i class='bx bx-comment-edit'></i>
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{ $sedangDiproses }}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Sedang Ditinjau</p>
           </div>
         </div>
@@ -101,7 +101,7 @@
         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
           <i class='bx bx-comment-check' style='color:#ffffff' ></i>
-            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{ $selesai }}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Diproses</p>
           </div>
         </div>
@@ -109,7 +109,7 @@
         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
               <i class='bx bx-comment-error'></i>
-            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="{{ $tidakDiproses }}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Tidak Diproses</p>
           </div>
         </div>
@@ -177,8 +177,8 @@
           <div class="info">
             <div class="address">
               <i class="bi bi-geo-alt"></i>
-              <h4>Location:</h4>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <h4>Lokasi :</h4>
+              <p>l. R. Suprapto No.35, Prailiu, Kec. Kota Waingapu, Kabupaten Sumba Timur, Nusa Tenggara Tim.</p>
             </div>
 
             <div class="email">
@@ -189,7 +189,7 @@
 
             <div class="phone">
               <i class="bi bi-phone"></i>
-              <h4>Call:</h4>
+              <h4>Telepon:</h4>
               <p>+1 5589 55488 55s</p>
             </div>
 
@@ -198,7 +198,7 @@
         </div>
 
         <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
-          <div style="width: 100%"><iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Universitas%20Muhammadiyah%20Purworejo+(My%20Business%20Name)&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/population/">Lokasi Universitas</a></iframe></div>
+          <div style="width: 100%"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Universitas%20Kristen%20Wira%20Wacana%20Sumba+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/population/">Lokasi Universitas</a></iframe></div>
         </div>
 
       </div>

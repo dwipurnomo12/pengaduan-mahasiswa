@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 
 class ListPengaduanController extends Controller
 {
@@ -18,8 +19,9 @@ class ListPengaduanController extends Controller
     public function detail($slug)
     {
         $pengaduan = Pengaduan::where('slug', $slug)->with(['user', 'kategori', 'comments'])->first();
+
         return view('lihat-aduan.detail', [
-            'pengaduan' => $pengaduan
+            'pengaduan' => $pengaduan,
         ]);
     }
 }

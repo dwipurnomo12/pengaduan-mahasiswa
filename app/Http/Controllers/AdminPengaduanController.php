@@ -16,6 +16,14 @@ class AdminPengaduanController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        $pengaduan = Pengaduan::find($id);
+        return view('admin.pengaduan.show', [
+            'pengaduan'     => $pengaduan
+        ]);
+    }
+
     public function edit($id)
     {
         $pengaduan = Pengaduan::find($id);

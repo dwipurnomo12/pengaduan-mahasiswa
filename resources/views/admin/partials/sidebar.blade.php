@@ -2,7 +2,7 @@
     <!-- Sidebar scroll-->
     <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">
-        <a href="/dashboard" class="text-nowrap logo-img my-2">
+        <a href="/" class="text-nowrap logo-img my-2">
           <img src="/admin/assets/images/logos/sipm.png" alt="" width="200">
         </a>
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">

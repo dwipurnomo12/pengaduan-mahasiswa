@@ -13,7 +13,7 @@
                 <div class="row mb-5">
                   @foreach ($listAduan as $aduan)
                     <div class="col-lg-4">
-                        <div class="card-aduan mb-2">
+                        <div class="card-aduan mb-4">
                           <div class="card-body p-2">
                             <h3><b>{{ $aduan->judul_pengaduan }}</b></h3>
                             <div class="user-info mt-3">
@@ -35,6 +35,9 @@
                     </div>
                   @endforeach
                 </div>
+
+                {{ $listAduan->links() }}
+
             </div>
         </section>
     </main>

@@ -41,13 +41,15 @@
                             <div class="card-header text-white" style="background-color: #01036f">
                                 Formulir Aduan Mahasiswa
                             </div>
+
+                            
                             <form method="POST" action="/tambah-aduan" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label for="judul_pengaduan" class="form-label">Judul Pengaduan <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control @error('judul_pengajuan') is-invalid @enderror" id="judul_pengaduan" name="judul_pengaduan" required>
-                                        @error('judul_pengajuan')
+                                        <input type="text" class="form-control @error('judul_pengaduan') is-invalid @enderror" id="judul_pengaduan" name="judul_pengaduan" required>
+                                        @error('judul_pengaduan') <!-- Fixed typo here -->
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -57,7 +59,7 @@
                                     <div class="mb-3">
                                         <label for="kategori_id" class="form-label">Kategori <span class="text-danger">*</span></label>
                                         <select class="form-select @error('kategori_id') is-invalid @enderror" aria-label="Default select example" name="kategori_id">
-                                            <option selected>-- Pilih Kategori --</option>
+                                            <option value="">-- Pilih Kategori --</option>
                                             @foreach ($kategories as $kategori)
                                                 <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
                                             @endforeach
@@ -77,7 +79,17 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="g-recaptcha-response" class="form-label">Google Recaptcha <span class="text-danger">*</span></label>
+                                        <div class="g-recaptcha" data-sitekey="6LcZ44AoAAAAADPouiho8UYGdcnpQlEZqPIMpcwd"></div>
+                                        @error('g-recaptcha-response')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
+                                
                                 <button class="btn float-end text-white" style="background-color: #01036f;" type="submit"><i class='bx bx-check-double'></i> Tambah Pengaduan</button>
                             </form>
                         </div>

@@ -38,13 +38,17 @@ Route::post('/lihat-aduan/{slug}/reply', [CommentController::class, 'commentRepl
 Route::get('/aduan-saya', [PengaduanSayaController::class,'index']);
 
 Auth::routes();
+Route::middleware('auth')->group(function(){
+    Route::group(['middleware' => 'CheckRole:admin'], function(){
+        Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+        Route::get('/admin/pengaduan', [AdminPengaduanController::class, 'index']);
+        Route::get('/admin/pengaduan/{id}', [AdminPengaduanController::class, 'show']);
+        Route::get('/admin/pengaduan/{id}/edit', [AdminPengaduanController::class, 'edit']);
+        Route::put('/admin/pengaduan/{id}', [AdminPengaduanController::class, 'update']);
 
-Route::get('/admin/pengaduan', [AdminPengaduanController::class, 'index']);
-Route::get('/admin/pengaduan/{id}/edit', [AdminPengaduanController::class, 'edit']);
-Route::put('/admin/pengaduan/{id}', [AdminPengaduanController::class, 'update']);
+        Route::get('/admin/komentar', [AdminKomentarController::class, 'index']);
 
-Route::get('/admin/komentar', [AdminKomentarController::class, 'index']);
-
-Route::get('/admin/kategori', AdminKategoriController::class);
+        Route::resource('/admin/kategori', AdminKategoriController::class);
+    });
+});

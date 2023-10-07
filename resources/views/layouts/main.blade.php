@@ -13,7 +13,6 @@
   <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
   <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -35,6 +34,8 @@
 
   <!-- Tiny Editor -->
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+  <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 
 <body>
@@ -104,6 +105,7 @@
         });
     </script>
 
+    
 </body>
 
 </html>

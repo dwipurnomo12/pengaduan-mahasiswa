@@ -8,6 +8,11 @@
                     Semua Pengaduan
                 </div>
                 <div class="card-body">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <div class="table-responsive">
                         <table id="table_id" class="table display">
                             <thead>
@@ -37,7 +42,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="/lihat-aduan/{{ $pengaduan->slug }}" type="button" target="_blank" class="btn btn-success mb-1"><i class="ti ti-eye-check"></i></a>
+                                            <a href="/admin/pengaduan/{{ $pengaduan->id }}}" type="button" class="btn btn-success mb-1"><i class="ti ti-eye-check"></i></a>
                                             <a href="/admin/pengaduan/{{ $pengaduan->id }}/edit" type="button" class="btn btn-warning mb-1"><i class="ti ti-edit"></i></a>
                                         </td>
                                     </tr>

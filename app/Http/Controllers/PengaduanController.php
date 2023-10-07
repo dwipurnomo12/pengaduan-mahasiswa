@@ -22,16 +22,17 @@ class PengaduanController extends Controller
     public function tambahAduan(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'judul_pengaduan'   => 'required',
-            'body'              => 'required',
-            'slug'              => 'required|unique:pengaduans',
-            'kategori_id'       => 'required'
+            'judul_pengaduan'       => 'required',
+            'body'                  => 'required',
+            'slug'                  => 'required|unique:pengaduans',
+            'kategori_id'           => 'required',
+            'g-recaptcha-response'  => 'required', NoCaptchaRule::class,
         ], [
             'judul_pengaduan.required'  => 'Judul Pengaduan wajib diisi !',
             'body.required'             => 'Isi aduan wajib diisi !',
             'slug.required'             => 'Wajib ada slug !',
             'slug.unique'               => 'Slug sudah digunakan !',
-            'kategori_id.required'      => 'Pilih Kategori !'
+            'kategori_id.required'      => 'Pilih Kategori !',  
         ]);
 
         if ($validator->fails()) {

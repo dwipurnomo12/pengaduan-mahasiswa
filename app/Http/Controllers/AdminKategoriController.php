@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class AdminKategoriController extends Controller
 {
@@ -23,7 +24,7 @@ class AdminKategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kategori.create');
     }
 
     /**
@@ -31,15 +32,23 @@ class AdminKategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validator = Validator::make($request->all(), [
+            'kategori'   => 'required' 
+        ], [
+            'kategori.required' => 'Form kategori wajib di isi'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        if($validator->fails()){
+            return redirect('/admin/kategori/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Kategori::create([
+            'kategori'  => $request->kategori
+        ]);
+
+        return redirect('/admin/kategori')->with('success', 'Berhasil menambahkan data kategori');
     }
 
     /**
@@ -47,7 +56,10 @@ class AdminKategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategori = Kategori::find($id);
+        return view('admin.kategori.edit', [
+            'kategori'  => $kategori
+        ]);
     }
 
     /**
@@ -55,7 +67,22 @@ class AdminKategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $kategori  = Kategori::find($id);
+        $validator = Validator::make($request->all(), [
+            'kategori'  => 'required',
+        ], [
+            'kategori.required' => 'Kategori wajib di isi !',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $kategori->update([
+            'kategori'  => $request->kategori
+        ]);
+
+        return redirect('/admin/kategori')->with('success', 'Berhasil mengedit data kategori !');
     }
 
     /**
@@ -63,6 +90,9 @@ class AdminKategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kategori = Kategori::find($id);
+        $kategori->delete();
+
+        return redirect()->back()->with('success', 'Berhasil menghapus kategori');
     }
 }
